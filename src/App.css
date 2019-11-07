@@ -1,22 +1,25 @@
-.App {
-  text-align: center;
+.gameboard .col {
+    padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
+.tile {
+    border: 1px solid black;
+    width: 4rem;
+    text-align: center;
+    margin: 0.75rem 0;
+    padding: 0.5rem 0;
+    font-size: 2rem;
+    border-radius: 8px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.left {
+    transform: rotate(90deg);
 }
 
-.App-link {
-  color: #09d3ac;
+.upside-down {
+    transform: rotate(180deg);
+}
+
+.right {
+    transform: rotate(-90deg);
 }
