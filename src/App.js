@@ -8,6 +8,7 @@ import dice from './assets/dice';
 import './App.css';
 
 const _ = require('lodash');
+require('dotenv').config()
 
 class App extends Component {
   constructor(props){
@@ -19,7 +20,8 @@ class App extends Component {
       time: '',
       seconds: this.initialTime,
       timeRemaining: '',
-      userGuess: ''
+      userGuess: '',
+      correctWords: []
     }
     this.timer = 0;
   };
@@ -128,6 +130,20 @@ class App extends Component {
     })
   };
 
+  addCorrectWord = word =>{
+    let array = this.state.correctWords;
+    array.push(word);
+    this.setState({
+      correctWords: array
+    })
+  };
+
+  resetGuessInput = () =>{
+    this.setState({
+      userGuess: ''
+    })
+  };
+
   // Start game
 
   startGame = () =>{
@@ -160,6 +176,8 @@ class App extends Component {
                 hodgmanOn={this.state.hodgmanOn} 
                 userGuess={this.state.userGuess} 
                 changeInput={this.changeInput} 
+                addCorrectWord={this.addCorrectWord}
+                resetGuessInput={this.resetGuessInput}
               />
             </Col>
             <Col sm={4}>
@@ -167,7 +185,9 @@ class App extends Component {
                 // changeTime={this.changeTime}
                 time={this.state.time}
               />
-              <WordList/>
+              <WordList
+                correctWords={this.state.correctWords}
+              />
             </Col>
           </Row>
         </Container>

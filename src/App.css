@@ -23,3 +23,26 @@
 .right {
     transform: rotate(-90deg);
 }
+
+.correct-words:last-child {
+    animation-name: correct;
+    animation-duration: 2s;
+    animation-iteration-count: 1
+}
+
+.correct-words:last-child::after {
+    content: "";
+    animation-name: add-text;
+    animation-duration: 2s;
+    animation-iteration-count: 1
+}
+
+@keyframes correct {
+    0% {color: green; font-weight: bold}
+    100% {color: black; font-weight: normal}
+}
+
+@keyframes add-text {
+    0% { content: " is a word"}
+    100% { content: ""}
+}
