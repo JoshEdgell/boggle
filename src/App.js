@@ -178,6 +178,7 @@ class App extends Component {
                 changeInput={this.changeInput} 
                 addCorrectWord={this.addCorrectWord}
                 resetGuessInput={this.resetGuessInput}
+                boardLayout={this.state.boardLayout}
               />
             </Col>
             <Col sm={4}>
