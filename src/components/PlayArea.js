@@ -32,18 +32,18 @@ function PlayArea(props){
                 }
             };
         };
-        // Set chainBroken to false ("chainBroken" is a boolean that is true when the word can't be traced through the array)
-        let chainBroken = false;
         // If the word is shorter than three letters, the word is not allowed
         if (word.length < 3) {
-            chainBroken = false;
+            return false
         }
         // If the first letter of the word isn't on the board, the word is not allowed
         if (letterPositions[word.charAt(0)].length === 0) {
-            chainBroken = true;
+            return false
         }
         // From each of the positions of the first letter...
         for (let i = 0 ; i < letterPositions[word.charAt(0)].length; i++) {
+            // Set chainBroken to false ("chainBroken" is a boolean that is true when the word can't be traced through the array)
+            let chainBroken = false;
             // "currentPosition" is the object with the row and column of the current place in the chain
             let currentPosition = letterPositions[word.charAt(0)][i]
             // Cycle through the letters in the word
@@ -67,34 +67,36 @@ function PlayArea(props){
                     chainBroken = true;
                 }
             }
+            if (!chainBroken) {
+                return true;
+            }
         }
-        return !chainBroken
+        return false;
     };
 
     let handleFormSubmit = event =>{
         event.preventDefault();
 
+        // If the user's guess appears on the board
         if (boardAllowsWord(props.userGuess)) {
-            console.log(`${props.userGuess} is on the board`)
-        } else {
-            console.log(`${props.userGuess} is not on the board`)
-        }
-        
         // Check the entry against the api
         let route = `${url}/${props.userGuess}?key=${key}`
         axios({
             method: 'GET',
             url: route
         }).then((response)=>{
-            if (response.data.length !== 0) {
+            if (response.data[0].def === undefined) {
+                console.log(`there's nothing in the definitions array`)
+            } else {
                 props.addCorrectWord(props.userGuess);
                 props.resetGuessInput();
-            } else {
-                console.log(`${props.userGuess} is not a word`)
             }
         }).catch((error)=>{
             console.log(error, "error from dictionary")
         })
+        } else {
+            console.log(`${props.userGuess} is not on the board`)
+        }
         // Clear the input form
         // console.log('submitting form');
     }
