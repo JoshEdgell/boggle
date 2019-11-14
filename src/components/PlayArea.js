@@ -16,61 +16,74 @@ function PlayArea(props){
     let handleInputChange = event =>{
         const { name, value } = event.target;
         props.changeInput(name, value)
-    }
-    let boardAllowsWord = term =>{
-        const word = term.toUpperCase();
-        let letterPositions = {};
+    };
+
+    let boardAllowsWord = term => {
+        // "array" is the board that's passed in through props
         let array = props.boardLayout
-        //Find the positions of all the letters in "word"
-        for (let h = 0; h < word.length; h++) {
-            letterPositions[word.charAt(h)] = [];
-            for (let i = 0; i < array.length; i++) {
-                for (let j = 0; j < array[i].length; j++) {
-                    if (array[i][j].value === word.charAt(h)) {
+        let word = term.toUpperCase().split('');
+        let letters = [];
+        let letterPositions = {};
+        for (let i = 0; i < array.length; i++) {
+            let newArray = [];
+            for (let j = 0; j < array[i].length; j++) {
+                newArray.push(array[i][j].value);
+                if (word.includes(array[i][j].value)) {
+                    if (letterPositions[array[i][j].value]) {
                         letterPositions[array[i][j].value].push({row: i, col: j})
+                    } else {
+                        letterPositions[array[i][j].value] = [{row: i, col: j}]
                     }
-                }
-            };
-        };
-        // If the word is shorter than three letters, the word is not allowed
-        if (word.length < 3) {
-            return false
-        }
-        // If the first letter of the word isn't on the board, the word is not allowed
-        if (letterPositions[word.charAt(0)].length === 0) {
-            return false
-        }
-        // From each of the positions of the first letter...
-        for (let i = 0 ; i < letterPositions[word.charAt(0)].length; i++) {
-            // Set chainBroken to false ("chainBroken" is a boolean that is true when the word can't be traced through the array)
-            let chainBroken = false;
-            // "currentPosition" is the object with the row and column of the current place in the chain
-            let currentPosition = letterPositions[word.charAt(0)][i]
-            // Cycle through the letters in the word
-            for (let j = 1; j < word.length; j++) {
-                // Set linkExists to false ("linkExists" is a boolean that indicates there's a link between the current letter and the next - the next letter's array of positions contains an element that is one space away from the current letter's position)
-                let linkExists = false;
-                // Cycle through the array of values for each letter, checking all positions against "currentPosition"
-                // If one position is within one space (but not on the same space) of "currentPosition," set "linkExists" to true
-                // If no positions are within one space of "currentPosition," set "chainBroken" as false
-                for (let k = 0; k < letterPositions[word.charAt(j)].length; k++) {
-                    if ( ( Math.abs(currentPosition.row - letterPositions[word.charAt(j)][k].row) < 2 && Math.abs(currentPosition.col - letterPositions[word.charAt(j)][k].col) < 2 ) && (currentPosition.row !== letterPositions[word.charAt(j)][k].row || currentPosition.col !== letterPositions[word.charAt(j)][k].col) ) {
-                        currentPosition = letterPositions[word.charAt(j)][k];
-                        linkExists = true;
-                    }
-                    if (linkExists) {
-                        currentPosition = letterPositions[word.charAt(j)][k];
-                        break;
-                    }
-                }
-                if (!linkExists) {
-                    chainBroken = true;
                 }
             }
-            if (!chainBroken) {
+            letters.push(newArray);
+        }
+        if (Object.keys(letterPositions).length < word.length);
+        // Paths is going to be an array of arrays
+        let paths = [[]];
+        // Go through each letter in "word"
+        // If there's only one letter position for a letter, put that letter position at the end of every path in "paths"
+        // If there are j letter positions for a letter, make j copies of "paths" into a new array
+        // In each set of j copies, put the jth letter position at the end of each array
+        // This should give all possible paths
+        for (let i = 0; i < word.length; i++){
+            let newPaths = [];
+            if (letterPositions[word[i]]) {
+                // If there's a key in letterPositions for a letter in the word...
+                for (let j = 0; j < letterPositions[word[i]].length; j++) {
+                    // Go through each of the keys in letterPosition
+                    for (let k = 0; k < paths.length; k++) {
+                        // If the letter position isn't already in a path's array, put it at the end of the path
+                        if (!paths[k].includes(letterPositions[word[i]][j])) {
+                        let array = Array.from(paths[k]);
+                        array.push(letterPositions[word[i]][j]);
+                        newPaths.push(array);
+                        }
+                    }
+                };
+            } else {
+                // If there isn't a key in letterPositions for a letter in the word, return false because it's impossible to make the word from the letters on the board
+                return false;
+            }
+            paths = newPaths;
+        }
+        for (let i = 0; i < paths.length; i++) {
+            // Travel through each path in "paths"
+            let path = paths[i];
+            let linkExists = true;
+            for (let j = 0; j < path.length - 1; j++) {
+                // If the distance between two positions on the board is more than one space either vertically or horizontally, the path is broken.  Set "linkExists" to false, break out of the loop to try the next path
+                if ( !(Math.abs(path[j].row - path[j+1].row) < 2) || !(Math.abs(path[j].col - path[j+1].col) < 2) ) {
+                    linkExists = false;
+                    break;
+                }
+            }
+            if (linkExists) {
+                // If a path has made it all the way through with links between each pair of letter positions, the path works, and the word can be made from the letters on the board
                 return true;
             }
         }
+        // If all paths have been tested and none of them work, return "false"
         return false;
     };
 
@@ -79,6 +92,7 @@ function PlayArea(props){
 
         // If the user's guess appears on the board
         if (boardAllowsWord(props.userGuess)) {
+            console.log(`${props.userGuess} is on the board`)
         // Check the entry against the api
         let route = `${url}/${props.userGuess}?key=${key}`
         axios({
