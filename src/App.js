@@ -179,6 +179,7 @@ class App extends Component {
                 addCorrectWord={this.addCorrectWord}
                 resetGuessInput={this.resetGuessInput}
                 boardLayout={this.state.boardLayout}
+                correctWords={this.state.correctWords}
               />
             </Col>
             <Col sm={4}>

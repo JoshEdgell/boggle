@@ -90,29 +90,34 @@ function PlayArea(props){
     let handleFormSubmit = event =>{
         event.preventDefault();
 
-        // If the user's guess appears on the board
         if (boardAllowsWord(props.userGuess)) {
-            console.log(`${props.userGuess} is on the board`)
-        // Check the entry against the api
-        let route = `${url}/${props.userGuess}?key=${key}`
-        axios({
-            method: 'GET',
-            url: route
-        }).then((response)=>{
-            if (response.data[0].def === undefined) {
-                console.log(`there's nothing in the definitions array`)
+            // If the game board can make the word...
+            if (!props.correctWords.includes(props.userGuess)) {
+                // ...and the word hasn't been guessed
+                // Check the entry against the api
+                let route = `${url}/${props.userGuess}?key=${key}`
+                axios({
+                    method: 'GET',
+                    url: route
+                }).then((response)=>{
+                    if (response.data[0].def === undefined) {
+                        console.log(`there's nothing in the definitions array`)
+                        props.resetGuessInput();
+                    } else {
+                        props.addCorrectWord(props.userGuess);
+                        props.resetGuessInput();
+                    }
+                }).catch((error)=>{
+                    console.log(error, "error from dictionary")
+                })
             } else {
-                props.addCorrectWord(props.userGuess);
+                //If the word has already been guessed
                 props.resetGuessInput();
             }
-        }).catch((error)=>{
-            console.log(error, "error from dictionary")
-        })
         } else {
-            console.log(`${props.userGuess} is not on the board`)
+            //If the game board can't make the word
+            props.resetGuessInput();
         }
-        // Clear the input form
-        // console.log('submitting form');
     }
 
     let startButton = () =>{
