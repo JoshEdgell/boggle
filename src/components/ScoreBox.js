@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import React from 'react';
 
-class Notification extends Component{
+class ScoreBox extends Component{
     constructor(props){
         super();
         this.state = {
@@ -28,27 +28,14 @@ class Notification extends Component{
 
     render(){
         return(
-            <div className={this.state.messageClass}>
-            {this.props.lastAnswer.message}
-        </div>
+            <div>
+                <h3>Score: {this.props.score}</h3>
+                <div className={this.state.messageClass}>
+                    {this.props.lastAnswer.message}
+                </div>
+            </div>
         )
     }
 }
 
-// function Notification(props){
-
-//     let getClassName = () =>{
-//         console.log("getting className")
-//         return(
-//             props.lastAnswer.className
-//         )
-//     }
-
-//     return(
-//         <div className={getClassName()}>
-//             {props.lastAnswer.message}
-//         </div>
-//     )
-// };
-
-export default Notification;
+export default ScoreBox;

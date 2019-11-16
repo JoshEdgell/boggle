@@ -4,7 +4,7 @@ import GameBoard from './components/GameBoard';
 import PlayArea from './components/PlayArea';
 import Timer from './components/Timer';
 import WordList from './components/WordList';
-import Notification from './components/Notification'
+import ScoreBox from './components/ScoreBox'
 import dice from './assets/dice';
 import './App.css';
 
@@ -20,6 +20,7 @@ class App extends Component {
       hodgmanOn: false,
       time: '',
       seconds: this.initialTime,
+      score: 0,
       timeRemaining: '',
       userGuess: '',
       correctWords: [],
@@ -31,9 +32,46 @@ class App extends Component {
     this.timer = 0;
   };
 
-  initialTime = 10;
+  initialTime = 180;
 
-  // Useful across multiple components
+  updateScore = (length) => {
+    let points = 0;
+    if (length > 7) {
+      points = 11
+    } else {
+      switch(length){
+        case 3:
+          points = 1
+          break;
+        case 4:
+          points = 2
+          break;
+        case 5:
+          points = 3
+          break;
+        case 6:
+          points = 4
+          break;
+        case 7:
+          points = 5
+          break;
+        default:
+      }
+    }
+    let newScore = this.state.score
+    newScore += points;
+    this.setState({
+      score: newScore 
+    })
+  }
+
+  loseAPoint = () =>{
+    let newScore = this.state.score;
+    newScore--;
+    this.setState({
+      score: newScore
+    })
+  }
 
   changeInput = (name, value) =>{
     this.setState({
@@ -47,8 +85,6 @@ class App extends Component {
       lastAnswer: newObject
     })
   };
-
-  // Game creation functions
 
   shuffle = array =>{
     for (let i = array.length - 1; i > 0; i--){
@@ -92,7 +128,6 @@ class App extends Component {
     })
   };
 
-  // Timing functions
   startTimer = () =>{
     if (this.timer === 0 && this.state.seconds > 0) {
       let seconds = this.state.seconds;
@@ -134,8 +169,6 @@ class App extends Component {
     return timeLeft
   }
 
-  // GameBoard props
-
   toggleHodgman = () =>{
     this.setState({
       hodgmanOn: !this.state.hodgmanOn
@@ -155,8 +188,6 @@ class App extends Component {
       userGuess: ''
     })
   };
-
-  // Start game
 
   startGame = () =>{
     // set "gameInProgress" to true
@@ -178,6 +209,7 @@ class App extends Component {
           <Row>
             <Col sm={8}>
               <GameBoard
+                gameInProgress={this.state.gameInProgress}
                 hodgmanOn={this.state.hodgmanOn}
                 boardLayout={this.state.boardLayout}
               />
@@ -193,6 +225,8 @@ class App extends Component {
                 boardLayout={this.state.boardLayout}
                 correctWords={this.state.correctWords}
                 changeLastAnswer={this.changeLastAnswer}
+                updateScore={this.updateScore}
+                loseAPoint={this.loseAPoint}
               />
             </Col>
             <Col sm={4}>
@@ -204,7 +238,8 @@ class App extends Component {
                 correctWords={this.state.correctWords}
                 incorrectGuess={this.state.incorrectGuess}
               />
-              <Notification
+              <ScoreBox
+                score={this.state.score}
                 lastAnswer={this.state.lastAnswer}
               />
             </Col>

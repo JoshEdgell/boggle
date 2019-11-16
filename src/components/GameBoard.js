@@ -23,11 +23,19 @@ function GameBoard(props){
         )
     })
 
-    return(
-        <Container className='gameboard'>
-            {createBoard}
-        </Container>
-    )
+    if (props.gameInProgress) {
+        return(
+            <Container className='gameboard'>
+                {createBoard}
+            </Container>
+        )
+    } else {
+        return(
+            <Container className='gameboard'>
+                
+            </Container>
+        )
+    }
     
 };
 
