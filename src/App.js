@@ -21,7 +21,8 @@ class App extends Component {
       seconds: this.initialTime,
       timeRemaining: '',
       userGuess: '',
-      correctWords: []
+      correctWords: [],
+      incorrectGuess: ''
     }
     this.timer = 0;
   };
@@ -180,6 +181,7 @@ class App extends Component {
                 resetGuessInput={this.resetGuessInput}
                 boardLayout={this.state.boardLayout}
                 correctWords={this.state.correctWords}
+                incorrectGuess={this.state.incorrectGuess}
               />
             </Col>
             <Col sm={4}>
@@ -189,6 +191,7 @@ class App extends Component {
               />
               <WordList
                 correctWords={this.state.correctWords}
+                incorrectGuess={this.state.incorrectGuess}
               />
             </Col>
           </Row>

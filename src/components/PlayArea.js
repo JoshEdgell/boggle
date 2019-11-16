@@ -112,6 +112,7 @@ function PlayArea(props){
                 })
             } else {
                 //If the word has already been guessed
+                props.changeInput('incorrectGuess',`${props.userGuess} has already been guessed`);
                 props.resetGuessInput();
             }
         } else {
