@@ -101,7 +101,7 @@ function PlayArea(props){
                     url: route
                 }).then((response)=>{
                     if (response.data[0].def === undefined) {
-                        console.log(`there's nothing in the definitions array`)
+                        props.changeInput('incorrectGuess', `${props.userGuess} isn't a word`)
                         props.resetGuessInput();
                     } else {
                         props.addCorrectWord(props.userGuess);
@@ -117,6 +117,7 @@ function PlayArea(props){
             }
         } else {
             //If the game board can't make the word
+            props.changeInput('incorrectGuess', `${props.userGuess} isn't on the board`)
             props.resetGuessInput();
         }
     }

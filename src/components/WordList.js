@@ -11,7 +11,7 @@ function WordList(props){
     });
     const incorrect =() =>{
         return(
-            <li>
+            <li className='correct-words'>
                 {props.incorrectGuess}
             </li>
         )
