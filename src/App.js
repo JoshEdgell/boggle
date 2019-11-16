@@ -4,6 +4,7 @@ import GameBoard from './components/GameBoard';
 import PlayArea from './components/PlayArea';
 import Timer from './components/Timer';
 import WordList from './components/WordList';
+import Notification from './components/Notification'
 import dice from './assets/dice';
 import './App.css';
 
@@ -22,7 +23,10 @@ class App extends Component {
       timeRemaining: '',
       userGuess: '',
       correctWords: [],
-      incorrectGuess: ''
+      lastAnswer: {
+        message: 'poop',
+        className: 'incorrect'
+      }
     }
     this.timer = 0;
   };
@@ -35,7 +39,14 @@ class App extends Component {
     this.setState({
       [name]: value
     })
-  }
+  };
+
+  changeLastAnswer = (text, className) =>{
+    let newObject = { message: text, className: className }
+    this.setState({
+      lastAnswer: newObject
+    })
+  };
 
   // Game creation functions
 
@@ -181,7 +192,7 @@ class App extends Component {
                 resetGuessInput={this.resetGuessInput}
                 boardLayout={this.state.boardLayout}
                 correctWords={this.state.correctWords}
-                incorrectGuess={this.state.incorrectGuess}
+                changeLastAnswer={this.changeLastAnswer}
               />
             </Col>
             <Col sm={4}>
@@ -192,6 +203,9 @@ class App extends Component {
               <WordList
                 correctWords={this.state.correctWords}
                 incorrectGuess={this.state.incorrectGuess}
+              />
+              <Notification
+                lastAnswer={this.state.lastAnswer}
               />
             </Col>
           </Row>

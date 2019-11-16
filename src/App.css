@@ -24,6 +24,24 @@
     transform: rotate(-90deg);
 }
 
+.correct {
+    color: green;
+    animation-name: fadeout;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+.incorrect {
+    color: red; 
+    animation-name: fadeout;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+}
+
+.hide {
+    display: none;
+}
+/* 
 .correct-words:last-child {
     animation-name: correct;
     animation-duration: 2s;
@@ -45,4 +63,9 @@
 @keyframes add-text {
     0% { content: " is a word"}
     100% { content: ""}
+} */
+
+@keyframes fadeout {
+    0% { opacity: 1}
+    100% { opacity: 0 }
 }

@@ -101,10 +101,12 @@ function PlayArea(props){
                     url: route
                 }).then((response)=>{
                     if (response.data[0].def === undefined) {
-                        props.changeInput('incorrectGuess', `${props.userGuess} isn't a word`)
+                        // props.changeInput('incorrectGuess', `${props.userGuess} isn't a word`);
+                        props.changeLastAnswer(`${props.userGuess} isn't a word`, 'incorrect');
                         props.resetGuessInput();
                     } else {
                         props.addCorrectWord(props.userGuess);
+                        props.changeLastAnswer(`${props.userGuess} is a word!`, 'correct')
                         props.resetGuessInput();
                     }
                 }).catch((error)=>{
@@ -112,12 +114,14 @@ function PlayArea(props){
                 })
             } else {
                 //If the word has already been guessed
-                props.changeInput('incorrectGuess',`${props.userGuess} has already been guessed`);
+                // props.changeInput('incorrectGuess',`${props.userGuess} has already been guessed`);
+                props.changeLastAnswer(`${props.userGuess} has already been guessed`, 'incorrect');
                 props.resetGuessInput();
             }
         } else {
             //If the game board can't make the word
-            props.changeInput('incorrectGuess', `${props.userGuess} isn't on the board`)
+            // props.changeInput('incorrectGuess', `${props.userGuess} isn't on the board`)
+            props.changeLastAnswer(`${props.userGuess} isn't on the board`, 'incorrect')
             props.resetGuessInput();
         }
     }
