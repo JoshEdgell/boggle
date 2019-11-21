@@ -28,9 +28,9 @@ class ScoreBox extends Component{
 
     render(){
         return(
-            <div>
+            <div className='score-box'>
                 <h3>Score: {this.props.score}</h3>
-                <div className={this.state.messageClass}>
+                <div className={`${this.state.messageClass} alert-message`}>
                     {this.props.lastAnswer.message}
                 </div>
             </div>

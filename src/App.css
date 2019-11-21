@@ -1,3 +1,38 @@
+h3 {
+    text-align: center;
+}
+
+.score-box {
+    border: 1px solid red;
+    height: 5rem;
+}
+
+.alert-message {
+    text-align: center;
+}
+
+.timer {
+    border: 1px solid yellow;
+    font-family: 'Orbitron', 'Courier New', monospace;
+    height: 5rem;
+}
+
+.timer h3 {
+    font-size: 4rem;
+}
+
+.word-list {
+    border: 1px solid green;
+}
+
+.word-list ul {
+    height: 24rem;
+    overflow: scroll;
+    margin: 0;
+    list-style: none;
+    font-size: 1.5rem;
+}
+
 .gameboard .col {
     padding: 0;
 }
@@ -41,29 +76,6 @@
 .hide {
     display: none;
 }
-/* 
-.correct-words:last-child {
-    animation-name: correct;
-    animation-duration: 2s;
-    animation-iteration-count: 1
-}
-
-.correct-words:last-child::after {
-    content: "";
-    animation-name: add-text;
-    animation-duration: 2s;
-    animation-iteration-count: 1
-}
-
-@keyframes correct {
-    0% {color: green; font-weight: bold}
-    100% {color: black; font-weight: normal}
-}
-
-@keyframes add-text {
-    0% { content: " is a word"}
-    100% { content: ""}
-} */
 
 @keyframes fadeout {
     0% { opacity: 1}

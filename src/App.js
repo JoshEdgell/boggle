@@ -234,13 +234,13 @@ class App extends Component {
                 // changeTime={this.changeTime}
                 time={this.state.time}
               />
-              <WordList
-                correctWords={this.state.correctWords}
-                incorrectGuess={this.state.incorrectGuess}
-              />
               <ScoreBox
                 score={this.state.score}
                 lastAnswer={this.state.lastAnswer}
+              />
+              <WordList
+                correctWords={this.state.correctWords}
+                incorrectGuess={this.state.incorrectGuess}
               />
             </Col>
           </Row>
