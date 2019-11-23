@@ -8,7 +8,8 @@ const StartModal = (props) => {
     }
 
     const startGame = () =>{
-        console.log("starting game");
+        toggle();
+        props.startGame();
     }
     return(
         <Modal isOpen={props.modal} toggle={toggle}>
@@ -32,10 +33,10 @@ const StartModal = (props) => {
                     <li>7 lettes - 5 points</li>
                     <li>8 or more lettes - 11 points</li>
                 </ul>
-                <p><em>Why is this "John Hodgman's" (Unofficial) Boggle Game?</em> - While listening to episode 354 ("Undisclosed Financial Settlement of Catan") of the Judge John Hodgman podcast, Mr. Hodgman stated that he doesn't enjoy Boggle because the letters are all oriented the wrong way.  As an aspiring web developer, I thought making a Boggle game that could reorient the dice to face the user (while also allowing the user the challenge of playing the game "traditionally") would be a fun challenge.</p>
+                <p><em>Why is this "John Hodgman's" (Unofficial) Boggle Game?</em> - In episode 354 of the Judge John Hodgman Podcast ("Undisclosed Financial Settlement of Catan"), Mr. Hodgman stated that he doesn't enjoy Boggle because the letters are oriented the wrong way.  As an aspiring web developer, I thought making a Boggle game that could reorient the dice to face the user (while also allowing the user the challenge of playing the game "traditionally") would be a fun challenge.</p>
                 <p>If, while playing, you would like to trigger the "Hodgman Rule," you may click the button to reorient the dice with no penalty to your score.  Clicking "Hodgman Off" will return the dice to their original, less-enjoyable positions.</p>
                 <p>So, without further ado, please enjoy a fun game of Boggle (or, a less-fun version should you choose to leave the dice in their weird orientations)!</p>
-                <p>* - While John Hodgman was the original inspiration for this game, he was not involved in the planning, developing, or design of this game.  If he wishes to endorse this game as his "official" Boggle game, credit will be given both freely and happily.  If he wishes his name removed, it shall be done with no ill-will retained by me, the game's creator.</p>
+                <p><em>* - While John Hodgman was the original inspiration for this game, he was not involved in the planning, developing, or design of this game.  If he wishes to endorse this game as his "official" Boggle game, credit will be given both freely and happily.  If he wishes his name removed, it shall be done with no ill-will retained by me, the game's creator.</em></p>
                 <p><em>** - as defined by the Merriam-Webster Collegiate Dictionary***</em></p>
                 <p><em>*** - or, at least as defined by their API</em></p>
             </ModalBody>

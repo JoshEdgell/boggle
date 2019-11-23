@@ -1,9 +1,13 @@
 import React from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button } from 'reactstrap';
 
 // var _ = require('lodash');
 
 function GameBoard(props){
+
+    const toggleHodgman = () =>{
+        props.toggleHodgman();
+    };
 
     // props.boardLayout is now an array of 5 arrays, each containing 5 objects.  Each object has a key of "value" which is the letter's value and "class" which is the class that determines the orientation of the tile itself
 
@@ -23,19 +27,32 @@ function GameBoard(props){
         )
     })
 
-    if (props.gameInProgress) {
-        return(
+    return(
+        props.gameInProgress ? 
             <Container className='gameboard'>
                 {createBoard}
+                <Row id='hodgman-button'>
+                    <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button>
+                </Row>
             </Container>
-        )
-    } else {
-        return(
-            <Container className='gameboard'>
+        :
+        null
+    )
+
+    // if (props.gameInProgress) {
+    //     return(
+    //         <Container className='gameboard'>
+    //             {createBoard}
+    //             <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button>
+    //         </Container>
+    //     )
+    // } else {
+    //     return(
+    //         <Container className='gameboard'>
                 
-            </Container>
-        )
-    }
+    //         </Container>
+    //     )
+    // }
     
 };
 

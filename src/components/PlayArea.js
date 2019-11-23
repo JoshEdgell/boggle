@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input } from 'reactstrap';
 import axios from 'axios';
 require('dotenv').config();
 
@@ -9,9 +9,9 @@ function PlayArea(props){
 
     let key = '68739ef5-c8a8-4666-904d-3c89d7427568'
 
-    const toggleHodgman = () =>{
-        props.toggleHodgman();
-    };
+    // const toggleHodgman = () =>{
+    //     props.toggleHodgman();
+    // };
 
     let handleInputChange = event =>{
         const { name, value } = event.target;
@@ -127,27 +127,19 @@ function PlayArea(props){
         }
     }
 
-    let startButton = () =>{
-        if (!props.gameInProgress) {
-            return(
-                <Button onClick={props.startGame}>Start Game</Button>
-            )
-        }
-    }
-
-    return(
+    return( props.gameInProgress ?
         <div className='play-area'>
-            {startButton()}
-            <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button>
+            {/* <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button> */}
             <Form>
                 <FormGroup>
                     <Label for='user-guess'>
                         <Input id='user-guess' type='text' name='userGuess' value={props.userGuess} onChange={handleInputChange}/>
                     </Label>
-                    <Input type='submit' value='Guess' onClick={handleFormSubmit}/>
+                    <Input type='submit' id='guess-button' value='Guess' onClick={handleFormSubmit}/>
                 </FormGroup>
             </Form>
         </div>
+        : null
     )
 };
 

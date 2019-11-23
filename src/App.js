@@ -36,7 +36,7 @@ class App extends Component {
     this.timer = 0;
   };
 
-  initialTime = 180;
+  initialTime = 180; // Time in seconds
 
   updateScore = (length) => {
     let points = 0;
@@ -181,7 +181,7 @@ class App extends Component {
 
   addCorrectWord = word =>{
     let array = this.state.correctWords;
-    array.push(word);
+    array.unshift(word);
     this.setState({
       correctWords: array
     })
@@ -202,7 +202,7 @@ class App extends Component {
   }
 
   startGame = () =>{
-    // set "gameInProgress" to true
+    // set "gameInProgress" to true - pass this boolean to gameboard, playarea, timer, scorebox, and wordlist to affect their return
     this.setState({
       gameInProgress: true
     })
@@ -220,6 +220,7 @@ class App extends Component {
         <StartModal
           modal={this.state.display.startModal}
           toggleStartModal={this.toggleStartModal}
+          startGame={this.startGame}
         />
         <Container>
           <Row>
@@ -228,10 +229,11 @@ class App extends Component {
                 gameInProgress={this.state.gameInProgress}
                 hodgmanOn={this.state.hodgmanOn}
                 boardLayout={this.state.boardLayout}
+                toggleHodgman={this.toggleHodgman}
               />
               <PlayArea
                 gameInProgress={this.state.gameInProgress}
-                toggleHodgman={this.toggleHodgman}
+                // toggleHodgman={this.toggleHodgman}
                 startGame={this.startGame} 
                 hodgmanOn={this.state.hodgmanOn} 
                 userGuess={this.state.userGuess} 
