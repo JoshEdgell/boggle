@@ -32,8 +32,33 @@ h5 {
     width: 80%;
 }
 
+.modal-content {
+    border-radius: 1rem;
+}
+
+.modal-header {
+    background-color: var(--light-blue)
+}
+
+.title-text {
+    color: var(--middle-blue);
+}
+
+.title-text:hover {
+    cursor: pointer;
+}
+
+.modal-footer {
+    background-color: var(--light-blue)
+}
+
 .gameboard {
     margin-bottom: 1rem;
+}
+
+.letter-row {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 .gameboard .col {
@@ -48,7 +73,12 @@ h5 {
     margin: 0.75rem 0;
     padding: 0.5rem 0;
     font-size: 2rem;
+    font-weight: bold;
     border-radius: 8px;
+}
+
+.tile-col:nth-child(5) > .tile {
+    display: inline-block;
 }
 
 .left {
@@ -143,9 +173,11 @@ h5 {
     background-color: var(--light-blue);
     color: var(--middle-blue);
     font-family: 'Indie Flower', cursive;
+    text-align: center;
 }
 
 .word-list ul {
+    padding: 0;
     height: 24rem;
     overflow: scroll;
     margin: 0;
@@ -166,5 +198,21 @@ h5 {
     .modal-dialog {
         max-width: 1024px;
         /* width: 80%; */
+    }
+}
+
+@media (max-width: 768px) {
+    .tile {
+    width: 3rem;
+    margin: 0.25rem;
+    padding: 0;
+    }
+
+    .timer {
+        height: 3rem;
+    }
+
+    .timer h3 {
+        font-size: 2rem;
     }
 }

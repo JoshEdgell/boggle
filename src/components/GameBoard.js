@@ -13,7 +13,7 @@ function GameBoard(props){
 
     let createBoard = props.boardLayout.map((array, i)=>{
         return(
-            <Row key={`row ${i}`}>
+            <Row className='letter-row' key={`row ${i}`}>
                 {array.map((die, j)=>{
                     return(
                         <Col key={`die ${i},${j}`} className='tile-col'>

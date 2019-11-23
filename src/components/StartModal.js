@@ -14,11 +14,11 @@ const StartModal = (props) => {
     return(
         <Modal isOpen={props.modal} toggle={toggle}>
             <ModalHeader>
-                The Unofficial "John Hodgman"* Boggle Game
+                The Unofficial <span className='title-text' title="While John Hodgman was the original inspiration for this game, he was not involved in the planning, developing, or design of this game.  If he wishes to endorse this game as his official Boggle game, credit will be given both freely and happily.  If he wishes his name removed, it shall be done with no ill-will retained by me, the game's creator.">"John Hodgman"</span> Boggle Game
             </ModalHeader>
             <ModalBody>
                 <p>Boggle is a word game played with between 16 and 49 lettered dice, which are shaken within a game tray to randomly generate a "board" of letters on which to play</p>
-                <p>Players have three minutes to find as many words** as possible on the grid, according to the following rules</p>
+                <p>Players have three minutes to find as many <span className='title-text' title="as defined by the Merriam-Webster Collegiate Dictionary, or at least by their dictionary API">words</span> as possible on the grid, according to the following rules</p>
                 <ul>
                     <li>The letters must be adjoining in a chain vertically, horizontally, diagonally, or a combination thereof</li>
                     <li>Words must contain at least three letters</li>
@@ -36,9 +36,6 @@ const StartModal = (props) => {
                 <p><em>Why is this "John Hodgman's" (Unofficial) Boggle Game?</em> - In episode 354 of the Judge John Hodgman Podcast ("Undisclosed Financial Settlement of Catan"), Mr. Hodgman stated that he doesn't enjoy Boggle because the letters are oriented the wrong way.  As an aspiring web developer, I thought making a Boggle game that could reorient the dice to face the user (while also allowing the user the challenge of playing the game "traditionally") would be a fun challenge.</p>
                 <p>If, while playing, you would like to trigger the "Hodgman Rule," you may click the button to reorient the dice with no penalty to your score.  Clicking "Hodgman Off" will return the dice to their original, less-enjoyable positions.</p>
                 <p>So, without further ado, please enjoy a fun game of Boggle (or, a less-fun version should you choose to leave the dice in their weird orientations)!</p>
-                <p><em>* - While John Hodgman was the original inspiration for this game, he was not involved in the planning, developing, or design of this game.  If he wishes to endorse this game as his "official" Boggle game, credit will be given both freely and happily.  If he wishes his name removed, it shall be done with no ill-will retained by me, the game's creator.</em></p>
-                <p><em>** - as defined by the Merriam-Webster Collegiate Dictionary***</em></p>
-                <p><em>*** - or, at least as defined by their API</em></p>
             </ModalBody>
             <ModalFooter>
                 <Button onClick={startGame}>Start Game</Button>
