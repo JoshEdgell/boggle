@@ -28,12 +28,15 @@ class ScoreBox extends Component{
 
     render(){
         return(
-            <div className='score-box'>
-                <h3>Score: {this.props.score}</h3>
-                <div className={`${this.state.messageClass} alert-message`}>
-                    {this.props.lastAnswer.message}
+            this.props.gameInProgress ? 
+                <div className='score-box'>
+                    <h3>Score: <strong>{this.props.score}</strong></h3>
+                    <div className={`${this.state.messageClass} alert-message`}>
+                        {this.props.lastAnswer.message}
+                    </div>
                 </div>
-            </div>
+            :
+                <div></div>
         )
     }
 }

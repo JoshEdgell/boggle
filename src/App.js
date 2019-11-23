@@ -8,6 +8,7 @@ import ScoreBox from './components/ScoreBox'
 import dice from './assets/dice';
 import './App.css';
 import StartModal from './components/StartModal';
+import EndModal from './components/EndModal'
 
 const _ = require('lodash');
 require('dotenv').config()
@@ -26,11 +27,12 @@ class App extends Component {
       userGuess: '',
       correctWords: [],
       lastAnswer: {
-        message: 'poop',
-        className: 'incorrect'
+        message: '',
+        className: ''
       },
       display: {
-        startModal: true
+        startModal: true,
+        endModal: false
       }
     }
     this.timer = 0;
@@ -162,7 +164,8 @@ class App extends Component {
       this.resetTimer();
       this.setState({
         gameInProgress: false
-      })
+      });
+      this.endGame();
     }
   }
 
@@ -201,10 +204,22 @@ class App extends Component {
     })
   }
 
+  toggleEndModal = () => {
+    let newDisplay = this.state.display;
+    newDisplay.endModal = !this.state.display.endModal
+    this.setState({
+      display: newDisplay
+    })
+  }
+
   startGame = () =>{
     // set "gameInProgress" to true - pass this boolean to gameboard, playarea, timer, scorebox, and wordlist to affect their return
     this.setState({
-      gameInProgress: true
+      gameInProgress: true,
+      hodgmanOn: false,
+      correctWords: [],
+      score: 0,
+      userGuess: ''
     })
     // "roll" the dice to determine the game board
     this.rollDice();
@@ -214,6 +229,10 @@ class App extends Component {
     this.startTimer();
   };
 
+  endGame = () => {
+    this.toggleEndModal();
+  }
+
   render(){
     return (
       <div className="App">
@@ -222,17 +241,23 @@ class App extends Component {
           toggleStartModal={this.toggleStartModal}
           startGame={this.startGame}
         />
+        <EndModal
+          modal={this.state.display.endModal}
+          toggleEndModal={this.toggleEndModal}
+          startGame={this.startGame}
+          correctWords={this.state.correctWords}
+          score={this.state.score}
+        />
         <Container>
           <Row>
             <Col sm={8}>
               <GameBoard
-                gameInProgress={this.state.gameInProgress}
                 hodgmanOn={this.state.hodgmanOn}
                 boardLayout={this.state.boardLayout}
                 toggleHodgman={this.toggleHodgman}
+                gameInProgress={this.state.gameInProgress}
               />
               <PlayArea
-                gameInProgress={this.state.gameInProgress}
                 // toggleHodgman={this.toggleHodgman}
                 startGame={this.startGame} 
                 hodgmanOn={this.state.hodgmanOn} 
@@ -245,20 +270,24 @@ class App extends Component {
                 changeLastAnswer={this.changeLastAnswer}
                 updateScore={this.updateScore}
                 loseAPoint={this.loseAPoint}
+                gameInProgress={this.state.gameInProgress}
               />
             </Col>
             <Col sm={4}>
               <Timer
                 // changeTime={this.changeTime}
                 time={this.state.time}
+                gameInProgress={this.state.gameInProgress}
               />
               <ScoreBox
                 score={this.state.score}
                 lastAnswer={this.state.lastAnswer}
+                gameInProgress={this.state.gameInProgress}
               />
               <WordList
                 correctWords={this.state.correctWords}
                 incorrectGuess={this.state.incorrectGuess}
+                gameInProgress={this.state.gameInProgress}
               />
             </Col>
           </Row>

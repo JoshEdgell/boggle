@@ -9,12 +9,15 @@ function WordList(props){
     });
 
     return(
-        <div className='word-list'>
-            <h3>Correct Words</h3>
-            <ul>
-                {list}
-            </ul>
-        </div>
+        props.gameInProgress ?
+            <div className='word-list'>
+                <h3><strong>Correct Words</strong></h3>
+                <ul>
+                    {list}
+                </ul>
+            </div>
+        :
+            <div></div>
     )
 };
 

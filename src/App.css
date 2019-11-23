@@ -1,40 +1,35 @@
+:root {
+    --dark-blue: rgb(1,1,124);
+    --middle-blue: rgb(4,0,248);
+    --light-blue: rgb(186,228,230);
+    --tan: rgb(237,201,159);
+    --red: rgb(255,0,0);
+}
+
 h3 {
     text-align: center;
 }
 
+h5 {
+    margin: 0 auto;
+}
+
+.btn {
+    background-color: var(--dark-blue);
+    border-color: var(--middle-blue);
+}
+
+.btn:hover {
+    background-color: var(--middle-blue);
+    border-color: var(--dark-blue);
+}
+
+.btn:focus {
+    outline-width: 0;
+}
+
 .modal-dialog {
     width: 80%;
-}
-
-.score-box {
-    border: 1px solid red;
-    height: 5rem;
-}
-
-.alert-message {
-    text-align: center;
-}
-
-.timer {
-    border: 1px solid yellow;
-    font-family: 'Orbitron', 'Courier New', monospace;
-    height: 5rem;
-}
-
-.timer h3 {
-    font-size: 4rem;
-}
-
-.word-list {
-    border: 1px solid green;
-}
-
-.word-list ul {
-    height: 24rem;
-    overflow: scroll;
-    margin: 0;
-    list-style: none;
-    font-size: 1.5rem;
 }
 
 .gameboard {
@@ -46,6 +41,7 @@ h3 {
 }
 
 .tile {
+    background-color: var(--tan);
     border: 1px solid black;
     width: 4rem;
     text-align: center;
@@ -80,6 +76,7 @@ h3 {
 }
 
 #user-guess {
+    background-color: var(--light-blue);
     margin-right: 1rem;
 }
 
@@ -89,15 +86,46 @@ h3 {
     margin-left: 1rem;
 }
 
+.timer {
+    font-family: 'Orbitron', 'Courier New', monospace;
+    height: 5rem;
+    border-width: 1px 1px 0 1px;
+    border-color: var(--dark-blue);
+    border-style: solid;
+    border-radius: 5px 5px 0 0;
+    background-color: var(--light-blue);
+    color: var(--middle-blue);
+}
+
+.timer h3 {
+    font-size: 4rem;
+}
+
+.score-box {
+    height: 5rem;
+    border-width: 0 1px 0 1px;
+    border-color: var(--dark-blue);
+    border-style: solid;
+    background-color: var(--light-blue);
+    color: var(--middle-blue);
+    font-family: 'Indie Flower', cursive;
+}
+
+.alert-message {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
 .correct {
-    color: green;
+    color: var(--dark-blue);
     animation-name: fadeout;
     animation-duration: 2s;
     animation-iteration-count: 1;
 }
 
 .incorrect {
-    color: red; 
+    color: var(--red);
     animation-name: fadeout;
     animation-duration: 2s;
     animation-iteration-count: 1;
@@ -105,6 +133,28 @@ h3 {
 
 .hide {
     display: none;
+}
+
+.word-list {
+    border-width: 0 1px 1px 1px;
+    border-radius: 0 0 5px 5px;
+    border-color: var(--dark-blue);
+    border-style: solid;
+    background-color: var(--light-blue);
+    color: var(--middle-blue);
+    font-family: 'Indie Flower', cursive;
+}
+
+.word-list ul {
+    height: 24rem;
+    overflow: scroll;
+    margin: 0;
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+#restart-text {
+    margin-right: 2rem;
 }
 
 @keyframes fadeout {

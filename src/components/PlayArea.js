@@ -135,7 +135,7 @@ function PlayArea(props){
                     <Label for='user-guess'>
                         <Input id='user-guess' type='text' name='userGuess' value={props.userGuess} onChange={handleInputChange}/>
                     </Label>
-                    <Input type='submit' id='guess-button' value='Guess' onClick={handleFormSubmit}/>
+                    <Input type='submit' id='guess-button' className='btn btn-primary' value='Guess' onClick={handleFormSubmit}/>
                 </FormGroup>
             </Form>
         </div>
