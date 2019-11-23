@@ -136,7 +136,7 @@ function PlayArea(props){
     }
 
     return(
-        <div className='playarea'>
+        <div className='play-area'>
             {startButton()}
             <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button>
             <Form>

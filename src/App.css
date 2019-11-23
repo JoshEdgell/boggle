@@ -2,6 +2,14 @@ h3 {
     text-align: center;
 }
 
+.modal-dialog {
+    width: 80%;
+}
+
+.play-area {
+    border: 1px solid blue;
+}
+
 .score-box {
     border: 1px solid red;
     height: 5rem;
@@ -80,4 +88,11 @@ h3 {
 @keyframes fadeout {
     0% { opacity: 1}
     100% { opacity: 0 }
+}
+
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 80%;
+        /* width: 80%; */
+    }
 }

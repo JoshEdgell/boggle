@@ -7,6 +7,7 @@ import WordList from './components/WordList';
 import ScoreBox from './components/ScoreBox'
 import dice from './assets/dice';
 import './App.css';
+import StartModal from './components/StartModal';
 
 const _ = require('lodash');
 require('dotenv').config()
@@ -27,6 +28,9 @@ class App extends Component {
       lastAnswer: {
         message: 'poop',
         className: 'incorrect'
+      },
+      display: {
+        startModal: true
       }
     }
     this.timer = 0;
@@ -189,6 +193,14 @@ class App extends Component {
     })
   };
 
+  toggleStartModal = () => {
+    let newDisplay = this.state.display;
+    newDisplay.startModal = !this.state.display.startModal
+    this.setState({
+      display: newDisplay
+    })
+  }
+
   startGame = () =>{
     // set "gameInProgress" to true
     this.setState({
@@ -205,6 +217,10 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+        <StartModal
+          modal={this.state.display.startModal}
+          toggleStartModal={this.toggleStartModal}
+        />
         <Container>
           <Row>
             <Col sm={8}>
