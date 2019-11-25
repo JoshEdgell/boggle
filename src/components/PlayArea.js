@@ -14,7 +14,8 @@ function PlayArea(props){
     // };
 
     let handleInputChange = event =>{
-        const { name, value } = event.target;
+        let { name, value } = event.target;
+        value = value.toUpperCase();
         props.changeInput(name, value)
     };
 
@@ -125,6 +126,13 @@ function PlayArea(props){
             props.loseAPoint();
             props.resetGuessInput();
         }
+        props.removeClickClass();
+    };
+
+    let clearUserGuess = event => {
+        event.preventDefault();
+        props.resetGuessInput();
+        props.removeClickClass();
     }
 
     return( props.gameInProgress ?
@@ -132,10 +140,11 @@ function PlayArea(props){
             {/* <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button> */}
             <Form>
                 <FormGroup>
+                    <Input type='submit' id='clear-entry' className='btn btn-primary' value='Clear Entry' onClick={clearUserGuess}/>
                     <Label for='user-guess'>
                         <Input id='user-guess' type='text' name='userGuess' value={props.userGuess} onChange={handleInputChange}/>
                     </Label>
-                    <Input type='submit' id='guess-button' className='btn btn-primary' value='Guess' onClick={handleFormSubmit}/>
+                    <Input type='submit' id='guess-button' className='btn btn-primary' value='Guess Word' onClick={handleFormSubmit}/>
                 </FormGroup>
             </Form>
         </div>

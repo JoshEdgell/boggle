@@ -109,9 +109,15 @@ h5 {
     justify-content: center;
 }
 
+#clear-entry {
+    display: inline;
+    width: auto;
+    margin-right: 1rem;
+}
+
 #user-guess {
     background-color: var(--light-blue);
-    margin-right: 1rem;
+    margin-right: 0 1rem;
 }
 
 #guess-button {

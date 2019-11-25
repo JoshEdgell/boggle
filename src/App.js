@@ -6,9 +6,9 @@ import Timer from './components/Timer';
 import WordList from './components/WordList';
 import ScoreBox from './components/ScoreBox'
 import dice from './assets/dice';
-import './App.css';
 import StartModal from './components/StartModal';
-import EndModal from './components/EndModal'
+import EndModal from './components/EndModal';
+import './App.css'
 
 const _ = require('lodash');
 require('dotenv').config()
@@ -69,7 +69,7 @@ class App extends Component {
     this.setState({
       score: newScore 
     })
-  }
+  };
 
   loseAPoint = () =>{
     let newScore = this.state.score;
@@ -77,7 +77,7 @@ class App extends Component {
     this.setState({
       score: newScore
     })
-  }
+  };
 
   changeInput = (name, value) =>{
     this.setState({
@@ -98,7 +98,7 @@ class App extends Component {
         [array[i],array[j]] = [array[j],array[i]]
     }
     return array
-  }
+  };
 
   rollDice = () =>{
     // "allDice" is the set of all dice in the game
@@ -167,14 +167,14 @@ class App extends Component {
       });
       this.endGame();
     }
-  }
+  };
 
   calculateTime = (time) =>{
     let minutes = ("0" + Math.floor(time / 60)).substr(-1);
     let seconds = ("00" +time % 60).substr(-2);
     let timeLeft = `${minutes}:${seconds}`
     return timeLeft
-  }
+  };
 
   toggleHodgman = () =>{
     this.setState({
@@ -196,13 +196,20 @@ class App extends Component {
     })
   };
 
+  removeClickClass = () => {
+    let clickedElements = document.getElementsByClassName('clicked');
+    while (clickedElements[0]) {
+      clickedElements[0].classList.remove('clicked');
+    }
+  }
+
   toggleStartModal = () => {
     let newDisplay = this.state.display;
     newDisplay.startModal = !this.state.display.startModal
     this.setState({
       display: newDisplay
     })
-  }
+  };
 
   toggleEndModal = () => {
     let newDisplay = this.state.display;
@@ -210,7 +217,7 @@ class App extends Component {
     this.setState({
       display: newDisplay
     })
-  }
+  };
 
   startGame = () =>{
     // set "gameInProgress" to true - pass this boolean to gameboard, playarea, timer, scorebox, and wordlist to affect their return
@@ -231,7 +238,7 @@ class App extends Component {
 
   endGame = () => {
     this.toggleEndModal();
-  }
+  };
 
   render(){
     return (
@@ -256,6 +263,8 @@ class App extends Component {
                 boardLayout={this.state.boardLayout}
                 toggleHodgman={this.toggleHodgman}
                 gameInProgress={this.state.gameInProgress}
+                changeInput={this.changeInput}
+                userGuess={this.state.userGuess}
               />
               <PlayArea
                 // toggleHodgman={this.toggleHodgman}
@@ -271,6 +280,7 @@ class App extends Component {
                 updateScore={this.updateScore}
                 loseAPoint={this.loseAPoint}
                 gameInProgress={this.state.gameInProgress}
+                removeClickClass={this.removeClickClass}
               />
             </Col>
             <Col sm={4}>
