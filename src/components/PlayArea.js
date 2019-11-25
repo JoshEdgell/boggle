@@ -101,6 +101,7 @@ function PlayArea(props){
                     method: 'GET',
                     url: route
                 }).then((response)=>{
+                    console.log(response);
                     if (response.data[0].def === undefined) {
                         props.changeLastAnswer(`${props.userGuess} isn't a word`, 'incorrect');
                         props.loseAPoint();
