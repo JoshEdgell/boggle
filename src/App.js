@@ -38,7 +38,7 @@ class App extends Component {
     this.timer = 0;
   };
 
-  initialTime = 180; // Time in seconds
+  initialTime = 1800; // Time in seconds
 
   updateScore = (length) => {
     let points = 0;

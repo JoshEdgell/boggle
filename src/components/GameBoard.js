@@ -9,6 +9,18 @@ function GameBoard(props){
         props.toggleHodgman();
     };
 
+    const handleClick = event => {
+        const letter = event.target.innerHTML
+        let target = event.target;
+        let array = Array.from(event.target.classList);
+        if (array.includes('clicked')) {
+            console.log("this has already beeen clicked")
+            target.classList.remove('clicked');
+        } else {
+            target.classList.add('clicked');
+        }
+    }
+
     // props.boardLayout is now an array of 5 arrays, each containing 5 objects.  Each object has a key of "value" which is the letter's value and "class" which is the class that determines the orientation of the tile itself
 
     let createBoard = props.boardLayout.map((array, i)=>{
@@ -17,7 +29,7 @@ function GameBoard(props){
                 {array.map((die, j)=>{
                     return(
                         <Col key={`die ${i},${j}`} className='tile-col'>
-                            <div className={props.hodgmanOn ? `tile` : `tile ${die.class}`}>
+                            <div className={props.hodgmanOn ? `tile` : `tile ${die.class}`} onClick={handleClick}>
                                 {die.value}
                             </div>
                         </Col>

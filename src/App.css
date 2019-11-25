@@ -77,6 +77,10 @@ h5 {
     border-radius: 8px;
 }
 
+.clicked {
+    background-color: var(--light-blue);
+}
+
 .tile-col:nth-child(5) > .tile {
     display: inline-block;
 }
