@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import axios from 'axios';
 require('dotenv').config();
 
@@ -97,12 +97,10 @@ function PlayArea(props){
                 // ...and the word hasn't been guessed
                 // Check the entry against the api
                 let route = `${url}/${props.userGuess}?key=${key}`
-                console.log(`sending ${props.userGuess} to the API`)
                 axios({
                     method: 'GET',
                     url: route
                 }).then((response)=>{
-                    console.log(response);
                     if (response.data[0].def === undefined) {
                         props.changeLastAnswer(`${props.userGuess} isn't a word`, 'incorrect');
                         props.loseAPoint();
@@ -142,7 +140,7 @@ function PlayArea(props){
             {/* <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button> */}
             <Form>
                 <FormGroup>
-                    <Input type='submit' id='clear-entry' className='btn btn-primary' value='Clear Entry' onClick={clearUserGuess}/>
+                    <Button id='clear-entry' className='btn btn-primary' onClick={clearUserGuess}>Clear Entry</Button>
                     <Label for='user-guess'>
                         <Input id='user-guess' type='text' name='userGuess' value={props.userGuess} onChange={handleInputChange}/>
                     </Label>
