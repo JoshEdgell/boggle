@@ -97,6 +97,7 @@ function PlayArea(props){
                 // ...and the word hasn't been guessed
                 // Check the entry against the api
                 let route = `${url}/${props.userGuess}?key=${key}`
+                console.log(`sending ${props.userGuess} to the API`)
                 axios({
                     method: 'GET',
                     url: route
