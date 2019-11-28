@@ -9,9 +9,9 @@ function PlayArea(props){
 
     let key = '68739ef5-c8a8-4666-904d-3c89d7427568'
 
-    // const toggleHodgman = () =>{
-    //     props.toggleHodgman();
-    // };
+    const toggleHodgman = () =>{
+        props.toggleHodgman();
+    };
 
     let handleInputChange = event =>{
         let { name, value } = event.target;
@@ -137,14 +137,18 @@ function PlayArea(props){
 
     return( props.gameInProgress ?
         <div className='play-area'>
-            {/* <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button> */}
             <Form>
                 <FormGroup>
-                    <Button id='clear-entry' className='btn btn-primary' onClick={clearUserGuess}>Clear Entry</Button>
+                    <div id='hodgman-div'>
+                        <Input type='submit' id='guess-button' className='btn btn-primary' value='Guess Word' onClick={handleFormSubmit}/>
+                        <Button id='hodgman-button' onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button>
+                    </div>
+
+
                     <Label for='user-guess'>
                         <Input id='user-guess' type='text' name='userGuess' value={props.userGuess} onChange={handleInputChange}/>
                     </Label>
-                    <Input type='submit' id='guess-button' className='btn btn-primary' value='Guess Word' onClick={handleFormSubmit}/>
+                    <Button id='clear-entry' className='btn btn-primary' onClick={clearUserGuess}>Clear Entry</Button>
                 </FormGroup>
             </Form>
         </div>

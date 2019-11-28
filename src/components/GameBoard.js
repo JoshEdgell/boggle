@@ -1,13 +1,13 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 // var _ = require('lodash');
 
 function GameBoard(props){
 
-    const toggleHodgman = () =>{
-        props.toggleHodgman();
-    };
+    // const toggleHodgman = () =>{
+    //     props.toggleHodgman();
+    // };
 
     const handleClick = event => {
         const letter = event.target.innerHTML;
@@ -55,9 +55,9 @@ function GameBoard(props){
         props.gameInProgress ? 
             <Container className='gameboard'>
                 {createBoard}
-                <Row id='hodgman-button'>
+                {/* <Row id='hodgman-button'>
                     <Button onClick={toggleHodgman}>{props.hodgmanOn ? "Hodgman Off" : "Hodgman On"}</Button>
-                </Row>
+                </Row> */}
             </Container>
         :
         null

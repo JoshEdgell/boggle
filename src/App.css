@@ -53,7 +53,7 @@ h5 {
 }
 
 .gameboard {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
 }
 
 .letter-row {
@@ -97,10 +97,15 @@ h5 {
     transform: rotate(-90deg);
 }
 
-#hodgman-button {
+#hodgman-div {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+#hodgman-button {
+    margin-left: 1rem;
 }
 
 .play-area {
@@ -112,7 +117,7 @@ h5 {
 #clear-entry {
     display: inline;
     width: auto;
-    margin-right: 1rem;
+    margin-left: 1rem;
 }
 
 #user-guess {
@@ -123,7 +128,7 @@ h5 {
 #guess-button {
     display: inline;
     width: auto;
-    margin-left: 1rem;
+    margin-right: 1rem;
 }
 
 .timer {
