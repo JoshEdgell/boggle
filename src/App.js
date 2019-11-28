@@ -261,7 +261,7 @@ class App extends Component {
               <GameBoard
                 hodgmanOn={this.state.hodgmanOn}
                 boardLayout={this.state.boardLayout}
-                toggleHodgman={this.toggleHodgman}
+                // toggleHodgman={this.toggleHodgman}
                 gameInProgress={this.state.gameInProgress}
                 changeInput={this.changeInput}
                 userGuess={this.state.userGuess}
@@ -281,6 +281,7 @@ class App extends Component {
                 loseAPoint={this.loseAPoint}
                 gameInProgress={this.state.gameInProgress}
                 removeClickClass={this.removeClickClass}
+                toggleHodgman={this.toggleHodgman}
               />
             </Col>
             <Col sm={4}>
